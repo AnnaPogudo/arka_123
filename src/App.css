@@ -338,7 +338,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: 50% 45%;
+  object-position: 50% 50%;
   filter: saturate(.72);
   transform: scale(1.02);
 }
@@ -614,8 +614,18 @@
   position: relative;
   padding: 20px 5% 0;
   background: linear-gradient(135deg, #ded7c9, #f2eee5 60%, #dbd3c5);
-  perspective: 1200px;
   overflow: hidden;
+}
+
+.room-photo {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  object-position: center;
+  filter: saturate(.92) contrast(1.02);
+  transform: translateX(var(--room-shift, 0)) scale(1.035);
+  transition: transform .35s ease, opacity .25s ease;
 }
 
 .room-scene {
@@ -658,6 +668,7 @@
   position: relative;
   background: var(--ink);
   --story-progress: 0;
+  --anna-foreground: 0;
 }
 
 .scroll-story__sticky {
@@ -695,16 +706,49 @@
   background: linear-gradient(90deg, rgba(19, 30, 25, .9) 0%, rgba(19, 30, 25, .72) 46%, rgba(19, 30, 25, .08) 100%);
 }
 
+.scroll-story__video {
+  position: absolute;
+  z-index: 0;
+  width: min(38vw, 500px);
+  height: 78%;
+  max-width: 48%;
+  right: calc(14% + var(--story-progress) * 10%);
+  bottom: -3%;
+  object-fit: cover;
+  object-position: 63% center;
+  border-left: 1px solid rgba(242, 241, 234, .22);
+  opacity: 0;
+  filter: drop-shadow(0 20px 38px rgba(0, 0, 0, .28));
+  transform: translateY(calc((1 - var(--story-progress)) * 18px)) scale(calc(.82 + var(--story-progress) * .24));
+  transform-origin: bottom center;
+  transition: right .15s linear, transform .15s linear, opacity .35s ease;
+}
+
+.scroll-story--video-ready .scroll-story__video {
+  opacity: 1;
+}
+
+.scroll-story--video-ready .scroll-story__character,
+.scroll-story--video-ready .scroll-story__anna-foreground {
+  opacity: 0;
+  visibility: hidden;
+}
+
 .scroll-story__character {
   position: absolute;
+  width: min(38vw, 500px);
   height: 78%;
-  width: auto;
   max-width: 48%;
   bottom: -3%;
   right: calc(14% + var(--story-progress) * 10%);
-  filter: drop-shadow(0 20px 38px rgba(0, 0, 0, .28));
-  transform: translateY(calc((1 - var(--story-progress)) * 18px));
-  transition: right .15s linear, transform .15s linear;
+  object-fit: cover;
+  object-position: 63% center;
+  border-left: 1px solid rgba(242, 241, 234, .22);
+  filter: blur(calc((1 - var(--story-progress)) * 2px)) drop-shadow(0 20px 38px rgba(0, 0, 0, .28));
+  opacity: calc(1 - var(--anna-foreground) * .58);
+  transform: translateY(calc((1 - var(--story-progress)) * 18px)) scale(calc(.82 + var(--story-progress) * .18));
+  transform-origin: bottom center;
+  transition: right .15s linear, transform .15s linear, opacity .15s linear, filter .15s linear;
 }
 
 .scroll-story__copy {
@@ -767,6 +811,35 @@
   letter-spacing: .14em;
 }
 
+.scroll-story__anna-foreground {
+  position: absolute;
+  z-index: 3;
+  width: min(31vw, 390px);
+  height: 64%;
+  right: calc(4% + var(--anna-foreground) * 4%);
+  bottom: -2%;
+  overflow: hidden;
+  opacity: var(--anna-foreground);
+  pointer-events: none;
+  filter: drop-shadow(0 28px 32px rgba(0, 0, 0, .38));
+  transform: translateY(calc((1 - var(--anna-foreground)) * 50px)) scale(calc(.86 + var(--anna-foreground) * .14));
+  transform-origin: bottom right;
+  transition: right .15s linear, transform .15s linear, opacity .15s linear;
+}
+
+.scroll-story__anna-foreground .brand-character {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 63% center;
+  animation: anna-alive 4.8s ease-in-out infinite;
+}
+
+@keyframes anna-alive {
+  0%, 100% { transform: scale(1) translateY(0); }
+  50% { transform: scale(1.018) translateY(-5px); }
+}
+
 .character-section {
   min-height: 700px;
   display: grid;
@@ -814,6 +887,10 @@
 }
 
 .character-art > .brand-character {
+  width: min(100%, 370px);
+  height: 510px;
+  object-fit: cover;
+  object-position: 63% center;
   z-index: 1;
 }
 
@@ -957,7 +1034,6 @@
 
 .gallery-card--wide > img {
   filter: saturate(.75);
-  object-position: 55% center;
 }
 
 .gallery-card::after {
@@ -1504,9 +1580,25 @@
   }
 
   .scroll-story__character {
+    width: min(75%, 340px);
     height: 51%;
     max-width: 75%;
     right: calc(2% + var(--story-progress) * 8%);
+    bottom: -1%;
+  }
+
+  .scroll-story__video {
+    width: min(75%, 340px);
+    height: 51%;
+    max-width: 75%;
+    right: calc(2% + var(--story-progress) * 8%);
+    bottom: -1%;
+  }
+
+  .scroll-story__anna-foreground {
+    width: min(66%, 300px);
+    height: 47%;
+    right: 0;
     bottom: -1%;
   }
 

@@ -1,8 +1,14 @@
 import { useEffect, useId, useRef, useState } from 'react'
 import './App.css'
 
-const libraryImage = '/minsk-library-background.jpg'
 const mapUrl = 'https://maps.google.com/?q=%D0%9C%D1%81%D1%82%D0%B8%D1%81%D0%BB%D0%B0%D0%B2%D1%86%D0%B0+10+%D0%9C%D0%B8%D0%BD%D1%81%D0%BA'
+const media = {
+  exterior: '/images/c__Users_Admin_AppData_Roaming_Cursor_User_workspaceStorage_6bad7d2f0fe5437e0eb93d5140122639_images_3-3a7b12d7-cf64-4256-8202-1ff46fe1e1ae.png',
+  windows: '/images/c__Users_Admin_AppData_Roaming_Cursor_User_workspaceStorage_6bad7d2f0fe5437e0eb93d5140122639_images_01-81a56bc1-694c-4ebb-969e-5274928c419a.png',
+  hall: '/images/c__Users_Admin_AppData_Roaming_Cursor_User_workspaceStorage_6bad7d2f0fe5437e0eb93d5140122639_images_1__1_-647eac0d-3fc0-46c8-a29e-48f5094311a3.png',
+  room: '/images/c__Users_Admin_AppData_Roaming_Cursor_User_workspaceStorage_6bad7d2f0fe5437e0eb93d5140122639_images_4-b915520d-003b-479b-a340-2cf9e7ce33d7.png',
+  wideHall: '/images/c__Users_Admin_AppData_Roaming_Cursor_User_workspaceStorage_6bad7d2f0fe5437e0eb93d5140122639_images_2__1_-1a4e2e76-a499-41a3-8fd2-0d260472758b.png',
+}
 
 function ArchMark({ className = '', animate = false }) {
   return (
@@ -31,36 +37,7 @@ function BrandLogo({ light = false }) {
 }
 
 function BrandCharacter({ className = '' }) {
-  const characterId = useId().replaceAll(':', '')
-  return (
-    <svg className={`brand-character ${className}`} viewBox="0 0 340 440" role="img" aria-label="Анна — фирменный персонаж АРКА 123">
-      <defs>
-        <linearGradient id={`jacket-${characterId}`} x1="0" x2="1" y1="0" y2="1">
-          <stop offset="0" stopColor="#263832" />
-          <stop offset="1" stopColor="#12231e" />
-        </linearGradient>
-        <linearGradient id={`skin-${characterId}`} x1="0" x2="1" y1="0" y2="1">
-          <stop offset="0" stopColor="#f1c8aa" />
-          <stop offset="1" stopColor="#d99d7d" />
-        </linearGradient>
-      </defs>
-      <ellipse cx="170" cy="420" rx="120" ry="14" fill="#18231e" opacity=".12" />
-      <path d="M64 420c8-93 43-151 106-151s98 58 106 151H64Z" fill={`url(#jacket-${characterId})`} />
-      <path d="m143 281 27 37 27-37-9-37h-36l-9 37Z" fill="#e8b89a" />
-      <path d="M111 105c0-61 31-89 66-89s67 29 67 89v101c0 46-31 80-73 80s-73-34-73-80V105Z" fill="#684432" />
-      <path d="M124 116c0-48 20-72 54-72s54 24 54 72v84c0 39-21 65-54 65s-54-26-54-65v-84Z" fill={`url(#skin-${characterId})`} />
-      <path d="M115 119c-4-62 20-103 65-103 45 0 72 38 63 105-12-13-22-32-28-52-20 24-54 38-100 38Z" fill="#684432" />
-      <path d="M127 159c8-6 17-6 25 0m42 0c8-6 17-6 25 0" fill="none" stroke="#49352b" strokeWidth="4" strokeLinecap="round" />
-      <path d="M153 185c11 8 23 8 34 0" fill="none" stroke="#9e5e54" strokeWidth="3" strokeLinecap="round" />
-      <path d="m142 317 28 32 28-32 20 103h-96l20-103Z" fill="#f0ece2" />
-      <path d="m94 341 50-24 26 34-39 69H64c3-29 13-55 30-79Zm152 0-50-24-26 34 39 69h67c-3-29-13-55-30-79Z" fill={`url(#jacket-${characterId})`} />
-      <path d="M170 348v72" stroke="#cfb66d" strokeWidth="2" opacity=".8" />
-      <circle cx="214" cy="341" r="12" fill="#d0b56a" />
-      <path d="M208 347v-13a6 6 0 0 1 12 0v13" fill="none" stroke="#23342d" strokeWidth="2" />
-      <text x="214" y="345" textAnchor="middle" fontSize="7" fontWeight="700" fill="#23342d">123</text>
-      <path d="M113 147c-13-16-23-2-17 18 4 13 13 17 20 14m125-32c13-16 23-2 17 18-4 13-13 17-20 14" fill={`url(#skin-${characterId})`} />
-    </svg>
-  )
+  return <img className={`brand-character ${className}`} src="/images/anna-arka-interior.jpg" alt="Анна — фирменный персонаж АРКА 123" />
 }
 
 function Loader() {
@@ -98,6 +75,11 @@ function RoomScene({ layout = 'empty', label = 'Интерьер простра�
         <clipPath id={`${clipId}-windows`}>
           <path d="M180 351V185a64 64 0 0 1 128 0v166Zm202 0V185a64 64 0 0 1 128 0v166Zm202 0V185a64 64 0 0 1 128 0v166Z" />
         </clipPath>
+        <linearGradient id={`${clipId}-sky`} x1="0" x2="0" y2="1">
+          <stop stopColor="#83a1a4" />
+          <stop offset=".7" stopColor="#dfbd89" />
+          <stop offset="1" stopColor="#667b70" />
+        </linearGradient>
       </defs>
       <rect width="1000" height="560" fill="#ede8dd" />
       <path d="M0 20 105 72v280L0 453Z" fill="#38413b" />
@@ -105,7 +87,13 @@ function RoomScene({ layout = 'empty', label = 'Интерьер простра�
       <path d="M0 20h1000L895 72H105Z" fill="#d4cbbc" />
       <path d="M105 72h790v280H105Z" fill={`url(#${clipId}-wall)`} />
       <path d="M0 453 105 352h790l105 101-170 107H170Z" fill={`url(#${clipId}-floor)`} />
-      <image href={libraryImage} x="160" y="118" width="680" height="235" preserveAspectRatio="xMidYMid slice" clipPath={`url(#${clipId}-windows)`} />
+      <g clipPath={`url(#${clipId}-windows)`}>
+        <rect x="160" y="118" width="680" height="235" fill={`url(#${clipId}-sky)`} />
+        <path d="M500 145 555 200 500 255 445 200Z" fill="#d2e2df" stroke="#f6e5bd" strokeWidth="4" />
+        <path d="M462 241h76v112h-76Z" fill="#536c63" />
+        <path d="M474 252h52v101h-52Z" fill="#7f9587" />
+        <path d="M160 300c150-52 220 18 340-4 135-25 206-43 340 7v50H160Z" fill="#60796c" />
+      </g>
       <g clipPath={`url(#${clipId}-windows)`} fill="#f2dfbb" opacity=".15">
         <path d="m160 124 210 0-90 235h-120Z" />
         <path d="m450 117 94 0-92 241h-82Z" />
@@ -164,10 +152,11 @@ function RoomViewer() {
   const [layout, setLayout] = useState('empty')
   const [view, setView] = useState(0)
   const layouts = [
-    { id: 'empty', label: 'Пустое пространство' },
-    { id: 'workshop', label: 'Мастер-класс' },
-    { id: 'seminar', label: 'Семинар' },
+    { id: 'empty', label: 'Общий зал', image: media.wideHall, alt: 'Общий вид зала АРКА 123 с арочными окнами' },
+    { id: 'windows', label: 'Арочные окна', image: media.windows, alt: 'Арочные окна АРКА 123 с видом на Национальную библиотеку' },
+    { id: 'ceiling', label: 'Высота и свет', image: media.hall, alt: 'Высокий потолок и освещение в зале АРКА 123' },
   ]
+  const activeLayout = layouts.find((item) => item.id === layout) ?? layouts[0]
 
   return (
     <div className="room-viewer">
@@ -181,15 +170,15 @@ function RoomViewer() {
         </div>
         <label className="view-control">
           <span>Обзор</span>
-          <input type="range" min="-8" max="8" value={view} onChange={(event) => setView(Number(event.target.value))} aria-label="Повернуть обзор пространства" />
+          <input type="range" min="-8" max="8" value={view} onChange={(event) => setView(Number(event.target.value))} aria-label="Сместить обзор фотографии" />
         </label>
       </div>
-      <div className="room-stage" style={{ '--room-turn': `${view}deg` }}>
-        <RoomScene layout={layout} />
-        <span className="scene-badge">КОНЦЕПТ · НЕ ОБМЕРНЫЙ ПЛАН</span>
+      <div className="room-stage" style={{ '--room-shift': `${view * 1.4}px` }}>
+        <img className="room-photo" src={activeLayout.image} alt={activeLayout.alt} />
+        <span className="scene-badge">ФОТОГРАФИЯ ПОМЕЩЕНИЯ</span>
       </div>
       <p className="room-disclaimer">
-        Объёмная схема — авторская концепция для тестового задания, а не точная 3D-модель помещения. Фото интерьера, замеры и список оборудования нужно подтвердить у владельца.
+        Переключайте ракурсы и двигайте обзор. Фотографии показывают реальные материалы пространства; рассадку и оборудование необходимо согласовать до бронирования.
       </p>
     </div>
   )
@@ -198,6 +187,7 @@ function RoomViewer() {
 function ScrollStory() {
   const sectionRef = useRef(null)
   const [phase, setPhase] = useState(0)
+  const [videoReady, setVideoReady] = useState(false)
 
   useEffect(() => {
     const section = sectionRef.current
@@ -210,6 +200,7 @@ function ScrollStory() {
         const range = Math.max(1, rect.height - window.innerHeight)
         const progress = Math.min(1, Math.max(0, -rect.top / range))
         section.style.setProperty('--story-progress', progress.toFixed(3))
+        section.style.setProperty('--anna-foreground', Math.min(1, Math.max(0, (progress - .42) / .34)).toFixed(3))
         const nextPhase = progress < 0.36 ? 0 : progress < 0.7 ? 1 : 2
         setPhase((current) => current === nextPhase ? current : nextPhase)
       })
@@ -231,9 +222,22 @@ function ScrollStory() {
   ]
 
   return (
-    <section className="scroll-story" ref={sectionRef} id="hero-brand" aria-label="История бренда при прокрутке">
+    <section className={`scroll-story ${videoReady ? 'scroll-story--video-ready' : ''}`} ref={sectionRef} id="hero-brand" aria-label="История бренда при прокрутке">
       <div className="scroll-story__sticky">
         <div className="scroll-story__backdrop"><RoomScene layout="workshop" /></div>
+        <video
+          className="scroll-story__video"
+          src="/videos/anna-welcome.mp4"
+          poster="/images/anna-arka-interior.jpg"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          aria-hidden="true"
+          onCanPlay={() => setVideoReady(true)}
+          onError={() => setVideoReady(false)}
+        />
         <div className="scroll-story__shade" />
         <BrandCharacter className="scroll-story__character" />
         <div className="scroll-story__copy" aria-live="polite">
@@ -244,6 +248,7 @@ function ScrollStory() {
           <small>ПРОКРУТИТЕ, ЧТОБЫ ПРОДОЛЖИТЬ</small>
         </div>
         <span className="scroll-story__note">АННА · ФИРМЕННЫЙ ПЕРСОНАЖ</span>
+        <div className="scroll-story__anna-foreground" aria-hidden="true"><BrandCharacter /></div>
       </div>
     </section>
   )
@@ -324,7 +329,7 @@ function App() {
           </div>
           <div className="hero-visual" key={replay}>
             <div className="hero-visual__image">
-              <img src={libraryImage} alt="Национальная библиотека Беларуси, вид напротив пространства АРКА 123" />
+              <img src={media.windows} alt="Арочные окна АРКА 123 с видом на Национальную библиотеку" />
               <div className="hero-visual__arch"><ArchMark animate /></div>
               <div className="hero-visual__caption"><span>53°56' С.Ш. · 27°41' В.Д.</span><span>МИНСК, БЕЛАРУСЬ</span></div>
             </div>
@@ -354,7 +359,7 @@ function App() {
             <div className="section-kicker"><span>02</span> ПОМЕЩЕНИЕ</div>
             <div>
               <h2>Пространство<br /><em>в вашем ритме.</em></h2>
-              <p>Меняйте сценарий встречи и посмотрите, как может выглядеть зал при разных вариантах рассадки.</p>
+              <p>Исследуйте помещение с разных ракурсов: общий объём, арочные окна и характерное освещение.</p>
             </div>
           </div>
           <RoomViewer />
@@ -369,7 +374,7 @@ function App() {
             <span className="eyebrow">ЗНАКОМЬТЕСЬ · АННА</span>
             <h2>Ваш человек<br /><em>в АРКА 123.</em></h2>
             <p>Анна — собирательный образ заботливой хозяйки пространства: встречает гостей, помогает сориентироваться и показывает, как зал может работать для разных событий.</p>
-            <p className="character-disclosure">Авторская векторная иллюстрация для концепции сайта, не фотография реального сотрудника.</p>
+            <p className="character-disclosure">Фотореалистичный образ создан для концепции сайта и не является фотографией реального сотрудника.</p>
             <a className="text-link" href="#contact">Познакомиться с пространством <span aria-hidden="true">↗</span></a>
           </div>
         </section>
@@ -395,13 +400,13 @@ function App() {
           </div>
           <div className="gallery-grid">
             <figure className="gallery-card gallery-card--wide">
-              <img src={libraryImage} alt="Национальная библиотека Беларуси напротив пространства" />
-              <figcaption><span>01 / ОРИЕНТИР</span><strong>Библиотека напротив</strong></figcaption>
+              <img src={media.exterior} alt="Вход в АРКА 123 на Мстиславца, 10" />
+              <figcaption><span>01 / ЛОКАЦИЯ</span><strong>Вход в АРКА 123</strong></figcaption>
             </figure>
-            <figure className="gallery-card gallery-card--scene"><RoomScene layout="empty" /><figcaption><span>02 / КОНЦЕПТ</span><strong>Пространство и свет</strong></figcaption></figure>
-            <figure className="gallery-card gallery-card--scene gallery-card--workshop"><RoomScene layout="workshop" /><figcaption><span>03 / КОНЦЕПТ</span><strong>Сценарий мастер-класса</strong></figcaption></figure>
+            <figure className="gallery-card"><img src={media.hall} alt="Основной зал АРКА 123 с высокими потолками" /><figcaption><span>02 / ИНТЕРЬЕР</span><strong>123 м² для идей</strong></figcaption></figure>
+            <figure className="gallery-card"><img src={media.room} alt="Арочные окна и естественный свет в АРКА 123" /><figcaption><span>03 / СВЕТ</span><strong>Окна 4 × 3,5 м</strong></figcaption></figure>
           </div>
-          <p className="gallery-disclosure">Фотографии самого интерьера и рекламные материалы не были доступны в проекте. Визуализации помещения здесь — концептуальные, не документальные.</p>
+          <p className="gallery-disclosure">Фотографии интерьера и рекламные материалы предоставлены заказчиком. Схема выше показывает возможные сценарии расстановки и не заменяет согласование комплектации перед мероприятием.</p>
         </section>
 
         <section className="pricing-section section-pad" id="prices">
