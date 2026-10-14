@@ -2,7 +2,6 @@ export const mapUrl = 'https://maps.google.com/?q=%D0%9C%D1%81%D1%82%D0%B8%D1%81
 
 export const media = {
   exterior: '/images/arka-entrance.png',
-  emptyRoom: '/images/room-layout-empty.jpg',
   hall: '/images/hall-ceiling.png',
   room: '/images/arched-windows.png',
   communication: '/images/space-gathering.png',

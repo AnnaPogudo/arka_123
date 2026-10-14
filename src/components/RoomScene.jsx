@@ -55,7 +55,7 @@ function RoomScene({ layout = 'empty', label = 'Интерьер простра�
         <ellipse cx="740" cy="79" rx="58" ry="5" />
       </g>
       {layout !== 'empty' && (
-        <g className="room-furniture">
+        <g>
           {layout === 'masterclass' && (
             <g>
               <path d="M34 177h67v106H34Z" fill="#d6d0c3" stroke="#f0e9dc" strokeWidth="3" />
