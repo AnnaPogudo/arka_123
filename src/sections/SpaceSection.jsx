@@ -6,7 +6,7 @@ function SpaceSection() {
     <section className="space-section section-pad" id="space">
       <SectionHeading
         title={<>Пространство<br /><em>в вашем ритме.</em></>}
-        text="Один зал и три сценария. Листайте от пустого зала к мастер-классу и семинару."
+        text="Один зал и два сценария. Листайте от пустого зала к мастер-классу и семинару."
       />
       <RoomViewer />
     </section>

@@ -56,7 +56,7 @@ function RoomScene({ layout = 'empty', label = 'Интерьер простра�
       </g>
       {layout !== 'empty' && (
         <g className="room-furniture">
-          {layout === 'workshop' && (
+          {layout === 'masterclass' && (
             <g>
               <path d="M34 177h67v106H34Z" fill="#d6d0c3" stroke="#f0e9dc" strokeWidth="3" />
               <path d="M42 186h51v39H42Z" fill="#63756b" />
@@ -80,7 +80,7 @@ function RoomScene({ layout = 'empty', label = 'Интерьер простра�
             <path d="m50 50 5 45m321-45-5 45" stroke="#514237" strokeWidth="8" />
             <path d="m24 7 370 0" stroke="#b59572" strokeWidth="3" />
           </g>
-          {layout === 'workshop' && <path d="M390 427h26v4h-26m65-6h24v5h-24m66 0h20v4h-20" stroke="#e8dfce" strokeWidth="4" strokeLinecap="round" />}
+          {layout === 'masterclass' && <path d="M390 427h26v4h-26m65-6h24v5h-24m66 0h20v4h-20" stroke="#e8dfce" strokeWidth="4" strokeLinecap="round" />}
         </g>
       )}
       <g fill="#faf7ef" opacity=".5">

@@ -19,7 +19,7 @@ function HeroSection() {
       </div>
       <div className="hero-visual reveal-block" style={revealStyle('1040ms')}>
         <div className="hero-visual__image">
-          <img src={media.emptyRoom} alt="Пустой зал АРКА 123 — место, чтобы собраться" />
+          <img src={media.gathering} alt="Зал АРКА 123, где можно собраться" />
           <div className="hero-visual__arch"><ArchMark /></div>
           <div className="hero-visual__caption"><span>МИНСК, БЕЛАРУСЬ</span></div>
         </div>

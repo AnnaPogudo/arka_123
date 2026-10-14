@@ -1,24 +1,45 @@
 import { useEffect, useRef, useState } from 'react'
 import { roomLayouts } from '../data/site.js'
 
+function clipsOf(item) {
+  if (item.videos?.length) return item.videos
+  if (item.video) return [item.video]
+  return []
+}
+
 function RoomViewer() {
   const [index, setIndex] = useState(0)
   const [dragX, setDragX] = useState(0)
   const [dragging, setDragging] = useState(false)
   const dragRef = useRef({ active: false, startX: 0 })
-  const videoRef = useRef(null)
+  const videoRefs = useRef([])
+  const clipIndex = useRef([])
   const last = roomLayouts.length - 1
 
   useEffect(() => {
-    const video = videoRef.current
-    if (!video) return undefined
-    if (roomLayouts[index]?.video) {
+    videoRefs.current.forEach((video, itemIndex) => {
+      if (!video) return
+      const clips = clipsOf(roomLayouts[itemIndex])
+      if (itemIndex !== index || !clips.length) {
+        video.pause()
+        return
+      }
+      clipIndex.current[itemIndex] = 0
+      const nextSrc = clips[0]
+      if (!video.src.endsWith(nextSrc)) video.src = nextSrc
       video.play().catch(() => {})
-    } else {
-      video.pause()
-    }
-    return undefined
+    })
   }, [index])
+
+  function playNextClip(itemIndex) {
+    const clips = clipsOf(roomLayouts[itemIndex])
+    const video = videoRefs.current[itemIndex]
+    if (!video || clips.length < 2 || itemIndex !== index) return
+    const next = ((clipIndex.current[itemIndex] ?? 0) + 1) % clips.length
+    clipIndex.current[itemIndex] = next
+    video.src = clips[next]
+    video.play().catch(() => {})
+  }
 
   function moveTo(next) {
     setIndex(Math.min(last, Math.max(0, next)))
@@ -69,7 +90,7 @@ function RoomViewer() {
         tabIndex={0}
         role="region"
         aria-roledescription="слайдер"
-        aria-label="Расстановка зала: пустой зал, мастер-класс и семинар"
+        aria-label="Расстановка зала: пустой зал, затем мастер-класс и семинар"
       >
         {roomLayouts.map((item, itemIndex) => (
           <img key={item.id} className={`room-slider__wash ${itemIndex === index ? 'is-active' : ''}`} src={item.image} alt="" />
@@ -77,15 +98,16 @@ function RoomViewer() {
         <div className="room-slider__track">
           {roomLayouts.map((item, itemIndex) => (
             <div className="room-slider__slide" key={item.id} aria-hidden={itemIndex !== index}>
-              {item.video ? (
+              {clipsOf(item).length ? (
                 <video
-                  ref={videoRef}
-                  src={item.video}
+                  ref={(node) => { videoRefs.current[itemIndex] = node }}
+                  src={clipsOf(item)[0]}
                   poster={item.image}
                   muted
-                  loop
+                  loop={clipsOf(item).length < 2}
                   playsInline
-                  autoPlay
+                  autoPlay={itemIndex === index}
+                  onEnded={() => playNextClip(itemIndex)}
                   aria-label={item.alt}
                 />
               ) : (

@@ -191,7 +191,7 @@ function ScrollStory() {
       aria-label="История Анны"
     >
       <div className="scroll-story__sticky">
-        <div className="scroll-story__backdrop"><RoomScene layout="workshop" /></div>
+        <div className="scroll-story__backdrop"><RoomScene layout="masterclass" /></div>
         <video
           ref={videoRef}
           className="scroll-story__video"

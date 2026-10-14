@@ -6,6 +6,7 @@ export const media = {
   hall: '/images/hall-ceiling.png',
   room: '/images/arched-windows.png',
   communication: '/images/space-gathering.png',
+  gathering: '/images/space-gathering.png',
 }
 
 export const roomLayouts = [
@@ -18,18 +19,12 @@ export const roomLayouts = [
     alt: 'Пустой зал АРКА 123 с арочными окнами',
   },
   {
-    id: 'workshop',
-    label: 'Мастер-класс',
-    text: 'Экран и ряды кресел для небольшой группы.',
-    image: '/images/room-layout-workshop.jpg',
-    alt: 'Зал АРКА 123 в расстановке для мастер-класса',
-  },
-  {
-    id: 'seminar',
-    label: 'Семинар',
-    text: 'Общий стол для обсуждения и совместной работы.',
-    image: '/images/room-layout-seminar.jpg',
-    alt: 'Зал АРКА 123 в расстановке для семинара',
+    id: 'masterclass',
+    label: 'Мастер-класс или семинар',
+    text: 'Экран и ряды стульев для групповых обсуждений: так зал выглядит после расстановки',
+    image: '/images/room-layout-masterclass.jpg',
+    video: '/videos/room-layout-masterclass-seminar.mp4',
+    alt: 'Зал АРКА 123 в расстановке для мастер-класса и семинара',
   },
 ]
 
