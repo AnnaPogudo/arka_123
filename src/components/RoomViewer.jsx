@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { roomLayouts } from '../data/site.js'
 
 function RoomViewer() {
@@ -6,7 +6,19 @@ function RoomViewer() {
   const [dragX, setDragX] = useState(0)
   const [dragging, setDragging] = useState(false)
   const dragRef = useRef({ active: false, startX: 0 })
+  const videoRef = useRef(null)
   const last = roomLayouts.length - 1
+
+  useEffect(() => {
+    const video = videoRef.current
+    if (!video) return undefined
+    if (roomLayouts[index]?.video) {
+      video.play().catch(() => {})
+    } else {
+      video.pause()
+    }
+    return undefined
+  }, [index])
 
   function moveTo(next) {
     setIndex(Math.min(last, Math.max(0, next)))
@@ -45,7 +57,7 @@ function RoomViewer() {
   const active = roomLayouts[index]
 
   return (
-    <div className="room-viewer">
+    <div className="room-viewer reveal-block" style={{ '--d': '100ms' }}>
       <div
         className={`room-slider ${dragging ? 'is-dragging' : ''}`}
         style={{ '--slide': index, '--drag': `${dragX}px` }}
@@ -65,7 +77,20 @@ function RoomViewer() {
         <div className="room-slider__track">
           {roomLayouts.map((item, itemIndex) => (
             <div className="room-slider__slide" key={item.id} aria-hidden={itemIndex !== index}>
-              <img src={item.image} alt={item.alt} draggable="false" />
+              {item.video ? (
+                <video
+                  ref={videoRef}
+                  src={item.video}
+                  poster={item.image}
+                  muted
+                  loop
+                  playsInline
+                  autoPlay
+                  aria-label={item.alt}
+                />
+              ) : (
+                <img src={item.image} alt={item.alt} draggable="false" />
+              )}
             </div>
           ))}
         </div>
@@ -78,22 +103,7 @@ function RoomViewer() {
           <strong>{active.label}</strong>
           {active.text}
         </p>
-        <div className="room-slider__dots" role="group" aria-label="Перейти к расстановке">
-          {roomLayouts.map((item, itemIndex) => (
-            <button
-              key={item.id}
-              type="button"
-              className={itemIndex === index ? 'is-active' : ''}
-              aria-label={item.label}
-              aria-current={itemIndex === index ? 'step' : undefined}
-              onClick={() => moveTo(itemIndex)}
-            />
-          ))}
-        </div>
       </div>
-      <p className="room-disclaimer">
-        Листайте от пустого зала к мастер-классу и семинару. Кадры показывают концепцию расстановки; комплектацию нужно согласовать до бронирования.
-      </p>
     </div>
   )
 }

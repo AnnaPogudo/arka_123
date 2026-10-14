@@ -1,11 +1,11 @@
 export const mapUrl = 'https://maps.google.com/?q=%D0%9C%D1%81%D1%82%D0%B8%D1%81%D0%BB%D0%B0%D0%B2%D1%86%D0%B0+10+%D0%9C%D0%B8%D0%BD%D1%81%D0%BA'
 
 export const media = {
-  exterior: '/images/c__Users_Admin_AppData_Roaming_Cursor_User_workspaceStorage_6bad7d2f0fe5437e0eb93d5140122639_images_3-3a7b12d7-cf64-4256-8202-1ff46fe1e1ae.png',
+  exterior: '/images/arka-entrance.png',
   emptyRoom: '/images/room-layout-empty.jpg',
-  hall: '/images/c__Users_Admin_AppData_Roaming_Cursor_User_workspaceStorage_6bad7d2f0fe5437e0eb93d5140122639_images_1__1_-647eac0d-3fc0-46c8-a29e-48f5094311a3.png',
-  room: '/images/c__Users_Admin_AppData_Roaming_Cursor_User_workspaceStorage_6bad7d2f0fe5437e0eb93d5140122639_images_4-b915520d-003b-479b-a340-2cf9e7ce33d7.png',
-  communication: '/images/room-layout-communication.png',
+  hall: '/images/hall-ceiling.png',
+  room: '/images/arched-windows.png',
+  communication: '/images/space-gathering.png',
 }
 
 export const roomLayouts = [
@@ -14,6 +14,7 @@ export const roomLayouts = [
     label: 'Пустой зал',
     text: 'Свободная площадь: так зал выглядит до расстановки.',
     image: '/images/room-layout-empty.jpg',
+    video: '/videos/room-layout-empty.mp4',
     alt: 'Пустой зал АРКА 123 с арочными окнами',
   },
   {
@@ -32,8 +33,42 @@ export const roomLayouts = [
   },
 ]
 
-export const storyBeats = [
-  { at: 0, eyebrow: 'ВАШ ХОСТ', title: 'Здравствуйте. Я Анна.', body: 'Помогу представить пространство, где встречаются люди и рождаются идеи.' },
-  { at: 0.34, eyebrow: 'ПРОСТРАНСТВО', title: 'Выберите свой формат.', body: 'Мастер-класс, семинар или встреча за общим столом — пространство можно адаптировать под задачу.' },
-  { at: 0.67, eyebrow: 'ВИД НА ГОРОД', title: 'Встречаемся напротив Библиотеки.', body: 'АРКА 123 — место, которое легко найти и приятно запомнить.' },
+export const mainNav = [
+  { href: '#about', label: 'О пространстве', footer: true },
+  { href: '#space', label: 'Помещение', footer: true },
+  { href: '#services', label: 'Форматы' },
+  { href: '#prices', label: 'Тарифы', footer: true },
+]
+
+export const heroStats = [
+  { value: '123 м²', label: 'пространства' },
+  { value: '4 × 3,5 м', label: 'арочные окна' },
+  { value: 'Минск', label: 'ул. Мстиславца, 10' },
+]
+
+export const services = [
+  { number: '01', title: 'Мастер-класс', text: 'Пространство для обучения, творчества и практики в небольшой группе.' },
+  { number: '02', title: 'Семинар', text: 'Встреча с экспертами, презентация или обсуждение за общим столом.' },
+  { number: '03', title: 'Встреча команды', text: 'Отдельное место, чтобы собраться вместе, спланировать и обменяться идеями.' },
+  { number: '04', title: 'Сценарий под вас', text: 'Предложите свой формат — обсудим рассадку и требования к мероприятию.', dark: true },
+]
+
+export const gallery = [
+  { src: media.exterior, alt: 'Вход в АРКА 123 на Мстиславца, 10', index: '01 / ЛОКАЦИЯ', title: 'Вход в АРКА 123', wide: true },
+  { src: media.hall, alt: 'Основной зал АРКА 123 с высокими потолками', index: '02 / ИНТЕРЬЕР', title: '123 м² для идей' },
+  { src: media.room, alt: 'Арочные окна и естественный свет в АРКА 123', index: '03 / СВЕТ', title: 'Окна 4 × 3,5 м' },
+]
+
+export const prices = [
+  { label: 'КОРОТКАЯ ВСТРЕЧА', title: 'Почасовая', amount: 'от 70', unit: 'BYN / час', text: 'Для консультации, репетиции или небольшой встречи.' },
+  { label: 'ПОПУЛЯРНЫЙ ФОРМАТ', title: 'Полдня', amount: 'от 280', unit: 'BYN / 4 часа', text: 'Для мастер-класса, обучения или семинара.', featured: true },
+  { label: 'ДЕНЬ СОБЫТИЯ', title: 'Полный день', amount: 'от 520', unit: 'BYN / день', text: 'Для насыщенной программы и нескольких сессий.' },
+]
+
+export const storyPlaybackRate = 1.5
+
+export const storyScenes = [
+  { out: 0.34, eyebrow: 'Ваш хост', title: 'Здравствуйте. Я Анна.', body: 'Помогу представить пространство, где встречаются люди и рождаются идеи.' },
+  { out: 0.67, eyebrow: 'Пространство', title: 'Выберите свой формат.', body: 'Мастер-класс, семинар или встреча за общим столом — пространство можно адаптировать под задачу.' },
+  { out: 1, eyebrow: 'Фирменный герой', title: 'Встречаемся напротив Библиотеки.', body: 'АРКА 123 — место, которое легко найти и приятно запомнить.' },
 ]

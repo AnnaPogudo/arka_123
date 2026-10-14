@@ -168,12 +168,11 @@ function ScrollStory() {
           ))}
         </div>
         <div className="scroll-story__copy" key={scene} aria-live="polite">
-          {failed && <p className="scroll-story__fallback">Видео истории не загрузилось. Страницу можно листать дальше.</p>}
+          {failed && <p className="scroll-story__fallback note">Видео истории не загрузилось. Страницу можно листать дальше.</p>}
           <span className="eyebrow">{copy.eyebrow}</span>
           <h2>{copy.title}</h2>
           <p>{copy.body}</p>
         </div>
-        <span className="scroll-story__note">АННА · ФИРМЕННЫЙ ПЕРСОНАЖ</span>
       </div>
     </section>
   )
