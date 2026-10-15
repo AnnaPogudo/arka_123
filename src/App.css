@@ -1019,6 +1019,64 @@
   font-weight: 400;
 }
 
+.reviews-section {
+  background: var(--paper);
+}
+
+.review-grid {
+  margin-top: 40px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.review-card {
+  margin: 0;
+  padding: 28px;
+  display: grid;
+  grid-template-columns: 72px 1fr;
+  column-gap: 18px;
+  row-gap: 4px;
+  align-content: start;
+  background: #f8f7f1;
+  border: 1px solid var(--line);
+}
+
+.review-card img {
+  width: 72px;
+  height: 72px;
+  grid-row: span 2;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.review-card strong {
+  align-self: end;
+  font-family: var(--serif);
+  font-size: 24px;
+  font-weight: 400;
+}
+
+.review-card span {
+  color: var(--rust);
+  font-size: 14px;
+  letter-spacing: .08em;
+}
+
+.review-card blockquote {
+  grid-column: 1 / -1;
+  margin: 12px 0 0;
+  color: var(--muted);
+  font-size: 18px;
+  font-style: normal;
+  line-height: 1.65;
+}
+
+.reviews-note {
+  margin: 22px 0 0;
+  color: var(--muted);
+}
+
 .pricing-section {
   background: #f8f7f1;
 }
@@ -1364,6 +1422,7 @@
 
 .reveal-stagger > .service-card,
 .reveal-stagger > .gallery-card,
+.reveal-stagger > .review-card,
 .reveal-stagger > .price-card {
   opacity: 0;
   transform: translateY(28px);
@@ -1371,6 +1430,7 @@
 
 .reveal-stagger.is-in > .service-card,
 .reveal-stagger.is-in > .gallery-card,
+.reveal-stagger.is-in > .review-card,
 .reveal-stagger.is-in > .price-card {
   animation: rise-in .8s cubic-bezier(.16, 1, .3, 1) both;
   animation-delay: var(--d, 0ms);
@@ -1378,18 +1438,21 @@
 
 .reveal-stagger.is-in > .service-card:nth-child(2),
 .reveal-stagger.is-in > .gallery-card:nth-child(2),
+.reveal-stagger.is-in > .review-card:nth-child(2),
 .reveal-stagger.is-in > .price-card:nth-child(2) {
   animation-delay: calc(var(--d, 0ms) + 90ms);
 }
 
 .reveal-stagger.is-in > .service-card:nth-child(3),
 .reveal-stagger.is-in > .gallery-card:nth-child(3),
+.reveal-stagger.is-in > .review-card:nth-child(3),
 .reveal-stagger.is-in > .price-card:nth-child(3) {
   animation-delay: calc(var(--d, 0ms) + 180ms);
 }
 
 .reveal-stagger.is-in > .service-card:nth-child(4),
 .reveal-stagger.is-in > .gallery-card:nth-child(4),
+.reveal-stagger.is-in > .review-card:nth-child(4),
 .reveal-stagger.is-in > .price-card:nth-child(4) {
   animation-delay: calc(var(--d, 0ms) + 270ms);
 }
@@ -1682,6 +1745,14 @@
     font-size: 12px;
   }
 
+  .review-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .review-card {
+    padding: 22px;
+  }
+
   .price-grid {
     grid-template-columns: 1fr;
   }
@@ -1731,6 +1802,7 @@
   .reveal-block,
   .reveal-stagger > .service-card,
   .reveal-stagger > .gallery-card,
+  .reveal-stagger > .review-card,
   .reveal-stagger > .price-card,
   .reveal-copy h1,
   .reveal-copy h2,

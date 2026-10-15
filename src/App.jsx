@@ -5,6 +5,7 @@ import { GallerySection } from './sections/GallerySection.jsx'
 import { HeroSection } from './sections/HeroSection.jsx'
 import { IntroSection } from './sections/IntroSection.jsx'
 import { PricingSection } from './sections/PricingSection.jsx'
+import { ReviewsSection } from './sections/ReviewsSection.jsx'
 import { ScrollStory } from './sections/ScrollStory.jsx'
 import { ServicesSection } from './sections/ServicesSection.jsx'
 import { SiteFooter } from './sections/SiteFooter.jsx'
@@ -25,6 +26,7 @@ export default function App() {
         <ScrollStory />
         <ServicesSection />
         <GallerySection />
+        <ReviewsSection />
         <PricingSection />
         <ContactSection />
       </main>
